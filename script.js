@@ -3,6 +3,7 @@ console.log('script sourced');
 var employeeOut = [];
 
 $(document).ready(function() {
+    console.log('JQ');
   $('#submitBtn').on('click', function() {
     var newObject = {
         firstName: $('#firstName').val(),
@@ -22,9 +23,14 @@ $(document).ready(function() {
       $('#jobTitle').val('');
       $('#annualSalary').val('');
       // clear textboxes
-
   }); // end submit
-  console.log('JQ');
+
+  $('#employees').on('click', '#deleteBtn', function() {
+    var deleteId = $(this).data('id');
+    var removedEmp = employeeOut.splice(deleteId, 1);
+    displayEmployees();
+  }); // end delete button
+
 }); // end doc ready
 
 function displayEmployees() {
@@ -36,7 +42,8 @@ function displayEmployees() {
     stringToAppend += employeeOut[i].lastName + ', ';
     stringToAppend += employeeOut[i].empId + ', ';
     stringToAppend += employeeOut[i].jobTitle + ', ';
-    stringToAppend += employeeOut[i].annualSalary;
+    stringToAppend += employeeOut[i].annualSalary + ' ';
+    stringToAppend += '<button id="deleteBtn" data-id="' + i + '">Delete</button>';
     stringToAppend += '</li>';
     outputList.append(stringToAppend);
   } // end loop
