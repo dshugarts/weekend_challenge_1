@@ -29,6 +29,7 @@ $(document).ready(function() {
     var deleteId = $(this).data('id');
     var removedEmp = employeeOut.splice(deleteId, 1);
     displayEmployees();
+    displayMonthlyCost();
   }); // end delete button
 
 }); // end doc ready
@@ -56,7 +57,13 @@ function displayMonthlyCost() {
   for(var i=0; i<employeeOut.length; i++){
   var totalSalary = (costSum += parseInt(employeeOut[i].annualSalary));
   } // end loop
-  var newStringToAppend = '<li>';
-  newStringToAppend += totalSalary;
-  costList.append(newStringToAppend);
+  if (totalSalary != undefined) {
+    var newStringToAppend = '<li>';
+    newStringToAppend += '$' + totalSalary;
+    costList.append(newStringToAppend);
+  } else if (totalSalary == undefined) {
+    var finalStringToAppend = '<li>';
+    finalStringToAppend += '$' + 0;
+    costList.append(finalStringToAppend);
+  }
 }
