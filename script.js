@@ -55,7 +55,7 @@ function displayMonthlyCost() {
   costList.empty();
   var costSum = 0;
   for(var i=0; i<employeeOut.length; i++){
-  var totalSalary = (costSum += parseInt(employeeOut[i].annualSalary));
+  var totalSalary = ((costSum += parseInt(employeeOut[i].annualSalary))/12);
   } // end loop
   if (totalSalary != undefined) {
     var newStringToAppend = '<li>';
